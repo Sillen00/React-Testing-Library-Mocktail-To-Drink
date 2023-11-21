@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import "./MocktailList.css";
+import SortMocktailsButtons from "./SortMocktailsButtons";
 
 interface Drinks {
     idDrink: string;
@@ -106,7 +107,16 @@ function MocktailList() {
                         {mocktails.length < 1 && searchResults.length === 0 && <h2>Mark's To-drink list...</h2>}
 
                         {/* BUTTONS TO SORT THE LIST */}
-                        <div className="allButtons">
+
+                        <SortMocktailsButtons
+                            activeButton={activeButton}
+                            showAllMocktails={showAllMocktails}
+                            showCompletedMocktails={showCompletedMocktails}
+                            showNonCompletedMocktails={showNonCompletedMocktails}
+                            clearAllDrinks={clearAllDrinks}
+                        />
+
+                        {/* <div className="allButtons">
                             <div className="sortButtonsDiv">
                                 <button className={activeButton === "All" ? "active" : ""} onClick={() => showAllMocktails("All")}>
                                     All
@@ -128,7 +138,7 @@ function MocktailList() {
                             <button onClick={clearAllDrinks} className="clearAllButton">
                                 Clear All
                             </button>
-                        </div>
+                        </div> */}
 
                         {/* MOCKTAILS LIST -------------------------------------------------------------- */}
                         {getFilteredMocktails().map((mocktail) => (
