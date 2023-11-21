@@ -34,6 +34,12 @@ function MocktailList() {
         );
     };
 
+    const handleDeleteClick = (id: string) => {
+        setMocktails((prevMocktails) =>
+            prevMocktails.filter((mocktail) => mocktail.idDrink !== id)
+        );
+    };
+
     return (
         <div>
             <div className="APISearchbarWrapper">
@@ -79,7 +85,12 @@ function MocktailList() {
                                             ? "Uncomplete"
                                             : "Complete"}
                                     </button>
-                                    <button className="mocktailDelete">
+                                    <button
+                                        className="mocktailDelete"
+                                        onClick={() =>
+                                            handleDeleteClick(mocktail.idDrink)
+                                        }
+                                    >
                                         Delete
                                     </button>
                                 </div>
