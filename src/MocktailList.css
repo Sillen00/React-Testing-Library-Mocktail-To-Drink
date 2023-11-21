@@ -1,7 +1,70 @@
+.APISearchbarWrapper {
+    text-align: center;
+}
+
 #APISearchbar {
-    display: block;
-    margin: 5em auto 0 auto;
+    margin: 2.5rem auto 0 auto;
     padding: 1em 1em;
-    width: 40em;
+    width: 85%;
+    max-width: 80rem;
     border-radius: 0.5em;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.mocktailsWrapper {
+    width: 85%;
+    max-width: 80rem;
+}
+
+.mocktailTodo {
+    list-style: none;
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mocktailTodo > div:first-child{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.buttonDiv {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.mocktailTodo h3 {
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.mocktailTodo:hover {
+    background-color: lightgray;
+}
+
+.mocktailsWrapper img{
+    width: 70px;
+    object-fit: cover;
+}
+
+.mocktailCompleted {
+    background-color: green;
+    height: 100%;
+    width: 70px;
+    cursor: pointer;
+    border: none;
+}
+
+.mocktailDelete {
+    background-color: red;
+    height: 100%;
+    width: 70px;
+    cursor: pointer;
+    border: none;
 }
