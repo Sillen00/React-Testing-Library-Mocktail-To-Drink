@@ -1,16 +1,15 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import MocktailList from "./MocktailList";
 
 function App() {
-  // const [count, setCount] = useState(0)
-  const [searchbarValue, setsearchbarValue] = useState("");
+    // const [count, setCount] = useState(0)
 
-  return (
-    <div className="App">
-      <input type="text" name="Searchbar" value={searchbarValue} />
-    </div>
-  );
+    return (
+        <div className="App">
+            <MocktailList />
+        </div>
+    );
 }
 
 export default App;
