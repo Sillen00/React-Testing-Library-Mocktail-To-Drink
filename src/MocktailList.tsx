@@ -5,6 +5,7 @@ interface Drinks {
     idDrink: string;
     strDrink: string;
     strDrinkThumb: string;
+    completed: boolean;
 }
 
 function MocktailList() {
@@ -12,14 +13,26 @@ function MocktailList() {
     const [mocktails, setMocktails] = useState<Drinks[]>([]);
 
     useEffect(() => {
-        // Fetch data from the API
-        fetch(
-            "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
-        )
-            .then((response) => response.json())
-            .then((data) => setMocktails(data.drinks))
-            .catch((error) => console.error("Error fetching data:", error));
+        setTimeout(() => {
+            // Fetch data from the API
+            fetch(
+                "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
+            )
+                .then((response) => response.json())
+                .then((data) => setMocktails(data.drinks))
+                .catch((error) => console.error("Error fetching data:", error));
+        }, 100);
     }, []);
+
+    const handleCompleteClick = (id: string) => {
+        setMocktails((prevMocktails) =>
+            prevMocktails.map((mocktail) =>
+                mocktail.idDrink === id
+                    ? { ...mocktail, completed: !mocktail.completed }
+                    : mocktail
+            )
+        );
+    };
 
     return (
         <div>
@@ -35,10 +48,17 @@ function MocktailList() {
 
             <main>
                 <div className="mocktailsWrapper">
-                    <h2>Mark's To-drink list</h2>
                     <ul>
+                        {mocktails.length < 1 && (
+                            <h2>Mark's To-drink list...</h2>
+                        )}
                         {mocktails.map((mocktail) => (
-                            <li key={mocktail.idDrink} className="mocktailTodo">
+                            <li
+                                key={mocktail.idDrink}
+                                className={`mocktailTodo ${
+                                    mocktail.completed ? "completed" : ""
+                                }`}
+                            >
                                 <div>
                                     <img
                                         src={mocktail.strDrinkThumb}
@@ -47,8 +67,17 @@ function MocktailList() {
                                     <h3>{mocktail.strDrink}</h3>
                                 </div>
                                 <div className="buttonDiv">
-                                    <button className="mocktailCompleted">
-                                        Complete
+                                    <button
+                                        className="mocktailCompleted"
+                                        onClick={() =>
+                                            handleCompleteClick(
+                                                mocktail.idDrink
+                                            )
+                                        }
+                                    >
+                                        {mocktail.completed
+                                            ? "Uncomplete"
+                                            : "Complete"}
                                     </button>
                                     <button className="mocktailDelete">
                                         Delete
