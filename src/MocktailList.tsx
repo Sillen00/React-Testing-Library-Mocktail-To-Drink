@@ -11,18 +11,22 @@ interface Drinks {
 function MocktailList() {
     const [searchbarValue, setsearchbarValue] = useState("");
     const [mocktails, setMocktails] = useState<Drinks[]>([]);
+    const [searchResults, setSearchResults] = useState<Drinks[]>([]);
 
     useEffect(() => {
-        setTimeout(() => {
-            // Fetch data from the API
-            fetch(
-                "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
-            )
-                .then((response) => response.json())
-                .then((data) => setMocktails(data.drinks))
-                .catch((error) => console.error("Error fetching data:", error));
-        }, 100);
-    }, []);
+        if (searchbarValue.trim() === "") {
+            setSearchResults([]); // Clear search results when the search bar is empty
+            return;
+        }
+
+        // Fetch data from the API based on the search query
+        fetch(
+            `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchbarValue}`
+        )
+            .then((response) => response.json())
+            .then((data) => setSearchResults(data.drinks || []))
+            .catch((error) => console.error("Error fetching data:", error));
+    }, [searchbarValue]);
 
     const handleCompleteClick = (id: string) => {
         setMocktails((prevMocktails) =>
@@ -40,6 +44,12 @@ function MocktailList() {
         );
     };
 
+    const handleAddToMocktails = (drink: Drinks) => {
+        setMocktails((prevMocktails) => [...prevMocktails, drink]);
+        setSearchResults([]); // Clear search results after adding a drink
+        setsearchbarValue(""); // Clear the search bar
+    };
+
     return (
         <div>
             <div className="APISearchbarWrapper">
@@ -55,9 +65,43 @@ function MocktailList() {
             <main>
                 <div className="mocktailsWrapper">
                     <ul>
-                        {mocktails.length < 1 && (
+                        {/* SEARCH RESULTS ---------------------------------------------------- */}
+                        {searchResults.length > 0 && (
+                            <>
+                                <h2>Search Results</h2>
+                                {searchResults.map((result) => (
+                                    <li
+                                        key={result.idDrink}
+                                        className="mocktailTodo"
+                                    >
+                                        <div>
+                                            <img
+                                                src={result.strDrinkThumb}
+                                                alt={result.strDrink}
+                                            />
+                                            <h3>{result.strDrink}</h3>
+                                        </div>
+                                        <div className="buttonDiv">
+                                            <button
+                                                className="mocktailAdd"
+                                                onClick={() =>
+                                                    handleAddToMocktails(result)
+                                                }
+                                            >
+                                                Add to Mocktails
+                                            </button>
+                                        </div>
+                                    </li>
+                                ))}
+                            </>
+                        )}
+
+                        {/* IF YOU DONT GOT ANY MOCKTAILS IN YOUR LIST SHOW THIS ----------------------- */}
+                        {mocktails.length < 1 && searchResults.length === 0 && (
                             <h2>Mark's To-drink list...</h2>
                         )}
+
+                        {/* MOCKTAILS LIST -------------------------------------------------------------- */}
                         {mocktails.map((mocktail) => (
                             <li
                                 key={mocktail.idDrink}
