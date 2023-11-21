@@ -20,38 +20,6 @@ main {
     max-width: 80rem;
 }
 
-
-.allButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-}
-.allButtons button{
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    font-size: clamp(0.8rem, 2vw, 1.3rem);
-}
-
-.clearAllButton {
-    background-color: red;
-    color: white;
-
-}
-
-.sortButtonsDiv {
-    display: flex;
-    gap: 0.2rem; 
-}
-
-.sortButtonsDiv button:hover {
-    opacity: 0.8;
-}
-.sortButtonsDiv button.active{
-    background-color: lightgreen;
-}
-
 .mocktailAdd {
     padding: 0 0.5rem;
 }
