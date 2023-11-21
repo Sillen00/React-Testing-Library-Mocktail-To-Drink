@@ -69,6 +69,10 @@ function MocktailList() {
         }
     };
 
+    const clearAllDrinks = () => {
+        setMocktails([]);
+    };
+
     return (
         <div>
             <div className="APISearchbarWrapper">
@@ -89,15 +93,10 @@ function MocktailList() {
                             <>
                                 <h2>Search Results</h2>
                                 {searchResults.map((result) => (
-                                    <li key={result.idDrink} className="mocktailTodo">
+                                    <li key={result.idDrink} className="mocktailTodo" onClick={() => handleAddToMocktails(result)}>
                                         <div>
                                             <img src={result.strDrinkThumb} alt={result.strDrink} />
                                             <h3>{result.strDrink}</h3>
-                                        </div>
-                                        <div className="buttonDiv">
-                                            <button className="mocktailAdd" onClick={() => handleAddToMocktails(result)}>
-                                                Add to Mocktails
-                                            </button>
                                         </div>
                                     </li>
                                 ))}
@@ -107,21 +106,27 @@ function MocktailList() {
                         {mocktails.length < 1 && searchResults.length === 0 && <h2>Mark's To-drink list...</h2>}
 
                         {/* BUTTONS TO SORT THE LIST */}
-                        <div className="sortButtonsDiv">
-                            <button className={activeButton === "All" ? "active" : ""} onClick={() => showAllMocktails("All")}>
-                                All
-                            </button>
-                            <button
-                                className={activeButton === "Completed" ? "active" : ""}
-                                onClick={() => showCompletedMocktails("Completed")}
-                            >
-                                Completed
-                            </button>
-                            <button
-                                className={activeButton === "Non Completed" ? "active" : ""}
-                                onClick={() => showNonCompletedMocktails("Non Completed")}
-                            >
-                                Non Completed
+                        <div className="allButtons">
+                            <div className="sortButtonsDiv">
+                                <button className={activeButton === "All" ? "active" : ""} onClick={() => showAllMocktails("All")}>
+                                    All
+                                </button>
+                                <button
+                                    className={activeButton === "Completed" ? "active" : ""}
+                                    onClick={() => showCompletedMocktails("Completed")}
+                                >
+                                    Completed
+                                </button>
+                                <button
+                                    className={activeButton === "Non Completed" ? "active" : ""}
+                                    onClick={() => showNonCompletedMocktails("Non Completed")}
+                                >
+                                    Non Completed
+                                </button>
+                            </div>
+
+                            <button onClick={clearAllDrinks} className="clearAllButton">
+                                Clear All
                             </button>
                         </div>
 
