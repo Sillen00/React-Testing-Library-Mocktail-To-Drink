@@ -78,6 +78,7 @@ function MocktailList() {
         <div>
             <div className="APISearchbarWrapper">
                 <input
+                    placeholder="Searchbar"
                     id="APISearchbar"
                     type="text"
                     name="Searchbar"
@@ -94,7 +95,12 @@ function MocktailList() {
                             <>
                                 <h2>Search Results</h2>
                                 {searchResults.map((result) => (
-                                    <li key={result.idDrink} className="mocktailTodo" onClick={() => handleAddToMocktails(result)}>
+                                    <li
+                                        id="mocktailSearchItem"
+                                        key={result.idDrink}
+                                        className="mocktailTodo"
+                                        onClick={() => handleAddToMocktails(result)}
+                                    >
                                         <div>
                                             <img src={result.strDrinkThumb} alt={result.strDrink} />
                                             <h3>{result.strDrink}</h3>
