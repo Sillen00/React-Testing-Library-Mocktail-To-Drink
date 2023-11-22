@@ -96,14 +96,16 @@ function MocktailList() {
                                 <h2>Search Results</h2>
                                 {searchResults.map((result) => (
                                     <li
-                                        id="mocktailSearchItem"
+                                        data-testid={`mocktailsearchresult${result.idDrink}`}
                                         key={result.idDrink}
                                         className="mocktailTodo"
                                         onClick={() => handleAddToMocktails(result)}
                                     >
                                         <div>
                                             <img src={result.strDrinkThumb} alt={result.strDrink} />
-                                            <h3>{result.strDrink}</h3>
+                                            <h3>
+                                                {result.strDrink} --- {result.idDrink}
+                                            </h3>
                                         </div>
                                     </li>
                                 ))}

@@ -1,7 +1,11 @@
-import {describe, it, expect} from "vitest";
-import {render, screen, waitFor, fireEvent} from "@testing-library/react";
+import {describe, it, expect, afterEach} from "vitest";
+import {cleanup, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import SortMocktailsButtons from "../src/SortMocktailsButtons";
 import MocktailList from "../src/MocktailList";
+
+afterEach(() => {
+    cleanup();
+});
 
 describe("something truthy and falsy", () => {
     it("true to be true", () => {
@@ -45,13 +49,18 @@ describe("SortMocktailsButtons.jsx tests", () => {
         render(<MocktailList />);
 
         const searchInput = screen.getByPlaceholderText("Searchbar"); // Assuming you have a placeholder text
-        await fireEvent.change(searchInput, {target: {value: "a"}});
 
-        // Assuming "A1" is part of the search results
-        await fireEvent.click(screen.getByText("A1"));
+        fireEvent.change(searchInput, {target: {value: "a"}});
+
+        // Get all elements with the test ID "mocktailsearchresult"
+        const searchResults = screen.getByTestId("mocktailsearchresult-17222");
+
+        expect(searchResults).toBeInTheDocument();
+        await waitFor(() => {
+            userEvent.click(searchResults);
+        });
 
         await waitFor(() => {
-            // Assuming you are checking if the text is present in the document
             expect(screen.queryByText("Mark's To-drink list...")).toBeNull();
         });
     });
