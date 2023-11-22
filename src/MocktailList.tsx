@@ -116,30 +116,6 @@ function MocktailList() {
                             clearAllDrinks={clearAllDrinks}
                         />
 
-                        {/* <div className="allButtons">
-                            <div className="sortButtonsDiv">
-                                <button className={activeButton === "All" ? "active" : ""} onClick={() => showAllMocktails("All")}>
-                                    All
-                                </button>
-                                <button
-                                    className={activeButton === "Completed" ? "active" : ""}
-                                    onClick={() => showCompletedMocktails("Completed")}
-                                >
-                                    Completed
-                                </button>
-                                <button
-                                    className={activeButton === "Non Completed" ? "active" : ""}
-                                    onClick={() => showNonCompletedMocktails("Non Completed")}
-                                >
-                                    Non Completed
-                                </button>
-                            </div>
-
-                            <button onClick={clearAllDrinks} className="clearAllButton">
-                                Clear All
-                            </button>
-                        </div> */}
-
                         {/* MOCKTAILS LIST -------------------------------------------------------------- */}
                         {getFilteredMocktails().map((mocktail) => (
                             <>
