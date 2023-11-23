@@ -103,9 +103,7 @@ function MocktailList() {
                                     >
                                         <div>
                                             <img src={result.strDrinkThumb} alt={result.strDrink} />
-                                            <h3>
-                                                {result.strDrink} --- {result.idDrink}
-                                            </h3>
+                                            <h3>{result.strDrink}</h3>
                                         </div>
                                     </li>
                                 ))}
