@@ -16,4 +16,5 @@ Manage your drink preferences. Search for drinks from an external API, add them 
 - **HTML**: Structure of the web pages.
 - **CSS**: Styling for an appealing user interface.
 - **React**: Handling user interactions and API requests.
+- **Testing-library, jest-dom and react**: Tests making sure the code works as intended..
 - **Drink API**: Fetching drink data including ingredients and instructions.
