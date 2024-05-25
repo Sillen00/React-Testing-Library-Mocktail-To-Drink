@@ -2,7 +2,7 @@
 ![image](https://github.com/Sillen00/React-Testing-Library-Mocktail-To-Drink/assets/114336470/4fd38fe0-ffa3-47f6-81cd-ab39dd141a83)
 
 
-Manage your drink preferences. Search for drinks from an external API, add them to their drinking list, mark them as completed, and even sort their drinks based on completion status.
+Manage your drink preferences. Search for drinks from an external API, add them to your drinking list, mark them as completed, and even sort your drinks based on completion status.
 
 ## Features
 - **Search**: Find drinks from an external API based on various criteria.
